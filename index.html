@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackSultan/Sam Otigba/Tunde Onakoya Internship Job Board</title>
+    <meta name="author" content="Habib Opeyemi Adebayo"/>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="toast" id="toast"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">HST Internship</h1>
+                <div class="header-actions">
+                    <button class="bookmarks-btn" id="bookmarksBtn">
+                        <i data-lucide="bookmark"></i>
+                        <span>Bookmarks</span>
+                        <span class="badge" id="bookmarkCount">0</span>
+                    </button>
+                    <div class="theme-toggle">
+                        <button class="theme-btn" id="themeToggle">
+                            <i data-lucide="sun" class="sun-icon"></i>
+                            <i data-lucide="moon" class="moon-icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="filters-section">
+                <div class="search-bar">
+                    <i data-lucide="search"></i>
+                    <input type="text" id="searchInput" placeholder="Search jobs, companies, or locations...">
+                </div>
+                
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <div class="custom-dropdown">
+                            <button class="dropdown-btn" id="workModeBtn">
+                                <span>Work Mode</span>
+                                <i data-lucide="chevron-down"></i>
+                            </button>
+                          <div class="dropdown-menu" id="workModeDropdown">
+    <label class="dropdown-item">
+        <input type="checkbox" value="Remote" checked>
+        <span class="custom-checkbox">
+            <i data-lucide="check"></i>
+        </span>
+        <span>Remote</span>
+    </label>
+    <label class="dropdown-item">
+        <input type="checkbox" value="Hybrid" checked>
+        <span class="custom-checkbox">
+            <i data-lucide="check"></i>
+        </span>
+        <span>Hybrid</span>
+    </label>
+    <label class="dropdown-item">
+        <input type="checkbox" value="Onsite" checked>
+        <span class="custom-checkbox">
+            <i data-lucide="check"></i>
+        </span>
+        <span>Onsite</span>
+    </label>
+</div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <div class="custom-dropdown">
+                            <button class="dropdown-btn" id="jobTypeBtn">
+                                <span>Job Type</span>
+                                <i data-lucide="chevron-down"></i>
+                            </button>
+                   <div class="dropdown-menu" id="jobTypeDropdown">
+    <label class="dropdown-item">
+        <input type="checkbox" value="Internship" checked>
+        <span class="custom-checkbox">
+            <i data-lucide="check"></i>
+        </span>
+        <span>Internship</span>
+    </label>
+    <label class="dropdown-item">
+        <input type="checkbox" value="SIWES" checked>
+        <span class="custom-checkbox">
+            <i data-lucide="check"></i>
+        </span>
+        <span>SIWES</span>
+    </label>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="jobs-section">
+                <div class="jobs-grid" id="jobsGrid"></div>
+                <div class="pagination" id="pagination">
+                    <button class="pagination-btn" id="prevPage" disabled>
+                        <i data-lucide="chevron-left"></i>
+                    </button>
+                    <div class="page-numbers" id="pageNumbers"></div>
+                    <button class="pagination-btn" id="nextPage">
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal" id="jobModal">
+        <button class="modal-close-btn" id="modalCloseBtn">
+            <i data-lucide="x"></i>
+        </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="company-logo-placeholder" id="modalCompanyLogo"></div>
+                <div>
+                    <h2 class="modal-job-title" id="modalJobTitle">Job Title</h2>
+                    <p class="modal-company-name" id="modalCompanyName">Company Name</p>
+                </div>
+                <button class="bookmark-modal-btn" id="bookmarkModalBtn">
+                    <i data-lucide="bookmark"></i>
+                </button>
+            </div>
+            
+            <div class="job-meta">
+                <div class="meta-item">
+                    <i data-lucide="map-pin"></i>
+                    <span id="modalLocation">Location</span>
+                </div>
+                <div class="meta-item">
+                    <i data-lucide="briefcase"></i>
+                    <span id="modalWorkMode">Work Mode</span>
+                </div>
+                <div class="meta-item">
+                    <i data-lucide="clock"></i>
+                    <span id="modalStartTime">Start Time</span>
+                </div>
+                <div class="meta-item">
+                    <i data-lucide="banknote"></i>
+                    <span id="modalSalary">Salary</span>
+                </div>
+            </div>
+            
+            <div class="job-description">
+                <h3>Job Description</h3>
+                <p id="modalDescription">Job description will appear here...</p>
+            </div>
+            
+            <div class="modal-actions">
+                <a href="#" class="apply-btn" id="modalApplyBtn">
+                    <i data-lucide="mail"></i>
+                    Contact Company
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="bookmarksOverlay"></div>
+    <div class="modal" id="bookmarksModal">
+        <button class="modal-close-btn" id="bookmarksCloseBtn">
+            <i data-lucide="x"></i>
+        </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-job-title">Bookmarked Jobs</h2>
+                <button class="clear-all-btn" id="clearAllBookmarks">
+                    <i data-lucide="trash-2"></i>
+                    <span>Clear All</span>
+                </button>
+            </div>
+            
+            <div class="bookmarks-list" id="bookmarksList"></div>
+            <div class="no-bookmarks" id="noBookmarks">
+                <i data-lucide="bookmark"></i>
+                <p>No bookmarked jobs yet</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
