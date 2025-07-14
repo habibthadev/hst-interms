@@ -906,3 +906,37 @@ body {
         padding: 20px;
     }
 }
+
+.footer {
+  padding: 1.5rem 0;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  margin-top: 2rem;
+}
+
+.footer-text {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.heart-icon {
+  width: 16px;
+  height: 16px;
+  color: #ff4d4d;
+  fill: #ff4d4d;
+}
+
+.footer-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
